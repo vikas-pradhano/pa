@@ -6,7 +6,14 @@ import os
 
 load_dotenv()
 
-app = Flask(__name__, template_folder="templets")
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html", user_name="Vikas")
+
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 GROQ_URL = os.getenv("GROQ_URL", "https://api.groq.com/openai/v1/chat/completions")
