@@ -1,13 +1,17 @@
-# Your Python Application Code Here
+# Updated app.py
 
-# Example: A simple Flask app
-
-from flask import Flask
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
 @app.route('/')
-def home():
-    return "Welcome to the homepage!"
+def index():
+    return jsonify({'message': 'Welcome to the API!'})
 
-# Add your routes here ...
+# Consolidated index route, removing duplicates
+@app.route('/index')
+def index_redirect():
+    return index()
+
+if __name__ == '__main__':
+    app.run(debug=True)
